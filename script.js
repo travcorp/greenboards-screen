@@ -45,7 +45,7 @@
 			console.log('Error:' + error);
 		});
 	}
-	Chart.defaults.global.defaultFontSize = 45;
+	Chart.defaults.global.defaultFontSize = 60;
 		
 	$scope.options = {
 		animation: {
