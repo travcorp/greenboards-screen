@@ -99,6 +99,6 @@
 	};
     $scope.labels = ['CenterForwards', 'CyberForce', 'DramaSquats'];
     $scope.series = ['Series A'];   
-	$scope.colours = ['#00ff99'];
+	$scope.colours = ['#0066ff'];
   }]);
 })();
