@@ -2,11 +2,12 @@
   'use strict';
   var app = angular.module('examples', ['chart.js', 'ui.bootstrap']);
 
-  app.config(function (ChartJsProvider) {
-    // Configure all charts    
+  app.config(function (ChartJsProvider) {    
+  
   });
 
   app.controller('BarCtrl', ['$scope','$http','$interval', function ($scope, $http, $interval) {
+ 
 	
 	updateData();
 	$interval(function () {
@@ -79,7 +80,7 @@
 		},
 		scales: {
 			scaleLabel:{
-					fontSize: 50
+					fontSize: 60
 				},
 			xAxes: [{
 				gridLines:{
@@ -97,7 +98,7 @@
 		}		
 	};
     $scope.labels = ['CenterForwards', 'CyberForce', 'DramaSquats'];
-    $scope.series = ['Series A'];
-    
+    $scope.series = ['Series A'];   
+	$scope.colours = ['#00ff99'];
   }]);
 })();
