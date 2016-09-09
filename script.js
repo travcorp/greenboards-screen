@@ -80,7 +80,7 @@
 		},
 		scales: {
 			scaleLabel:{
-					fontSize: 60
+					fontSize: 50
 				},
 			xAxes: [{
 				gridLines:{
