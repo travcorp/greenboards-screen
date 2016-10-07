@@ -1,30 +1,79 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <title>GreenBoards</title>
-  <link href="bootstrap.css" rel="stylesheet">
-</head>
-<body ng-app="examples">
-<br/>
-<div class="container"></div>
-<div id="container" class="container">
-  <div class="row" ng-controller="BarCtrl">
-    <div class="col-lg-6 col-sm-12">
-      <div  class="panel panel-default">        
-        <div class="panel-body">
-          <canvas id="myChart" class="chart chart-bar" chart-data="data" chart-labels="labels"
-                  chart-options="options" chart-colors="colours" chart-series="series"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <title>GreenBoards</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
 
-<script src="node_modules/angular/angular.js"></script>
-<script src="node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="node_modules/chart.js/dist/Chart.js"></script>
-<script src="node_modules/angular-chart.js/dist/angular-chart.js"></script>
-<script src="script.js"></script>
-</body>
+  <body ng-app="examples">
+    <div class="rocket-container" ng-controller="BarCtrl">
+      <div class="rocket">
+        <div class="rocket-body">
+          <div class="body">CFW</div>
+          <div class="fin fin-left"></div>
+          <div class="fin fin-right"></div>
+          <div class="window"></div>
+        </div>
+        <div class="exhaust-flame"></div>
+        <ul class="exhaust-fumes">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li class="score">{{ scores['centerForwards'] }}</li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="rocket">
+        <div class="rocket-body">
+          <div class="body">CYF</div>
+          <div class="fin fin-left"></div>
+          <div class="fin fin-right"></div>
+          <div class="window"></div>
+        </div>
+        <div class="exhaust-flame"></div>
+        <ul class="exhaust-fumes">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li class="score">{{ scores['cyberForce'] }}</li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="rocket">
+        <div class="rocket-body">
+          <div class="body">DSQ</div>
+          <div class="fin fin-left"></div>
+          <div class="fin fin-right"></div>
+          <div class="window"></div>
+        </div>
+        <div class="exhaust-flame"></div>
+        <ul class="exhaust-fumes">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li class="score">{{ scores['dramaSquats'] }}</li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>        
+    </div>  
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="node_modules/chart.js/dist/Chart.js"></script>
+    <script src="node_modules/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
