@@ -11,9 +11,9 @@
       <div class="rocket" ng-repeat="team in teams" ng-style="{ top: team.top + '%'}">
         <div class="rocket-body">
           <div class="body">{{ team.label }}</div>
-          <div class="fin fin-left"></div>
-          <div class="fin fin-right"></div>
-          <div class="window"></div>
+          <div class="fin fin-left {{ team.color }}"></div>
+          <div class="fin fin-right {{ team.color }}"></div>
+          <div class="window {{ team.color }}"></div>
         </div>
         <div class="exhaust-flame"></div>
         <ul class="exhaust-fumes">

@@ -92,6 +92,19 @@ body {
   border-top-right-radius: 80%;
   border-bottom-right-radius: 20%;
 }
+
+.rocket .red {
+  background-color: #a75248;
+}
+
+.rocket .green {
+  background-color: #4881a7;
+}
+
+.rocket .blue {
+  background-color: #48a771;
+}
+
 .rocket .exhaust-flame {
   position: absolute;
   top: 90%;

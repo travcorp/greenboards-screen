@@ -33,9 +33,9 @@
 				// 
 
 				$scope.teams = [
-					{ name: 'CenterForwards', label: 'CFW', score: findTeamByName('CenterForwards').score, top: maxTop, color: '#48a771' },    
-					{ name: 'CyberForce', label: 'CYF', score: findTeamByName('CyberForce').score, top: 25, color: '#4881a7' },
-					{ name: 'DramaSquats', label: 'DSQ', score: findTeamByName('DramaSquats').score, top: minTop, color: '#a75248' }
+					{ name: 'CenterForwards', label: 'CFW', score: findTeamByName('CenterForwards').score, top: maxTop, color: 'blue' },    
+					{ name: 'CyberForce', label: 'CYF', score: findTeamByName('CyberForce').score, top: 25, color: 'green' },
+					{ name: 'DramaSquats', label: 'DSQ', score: findTeamByName('DramaSquats').score, top: minTop, color: 'red' }
 				];
 			}
 
