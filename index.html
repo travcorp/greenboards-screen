@@ -8,9 +8,9 @@
 
   <body ng-app="examples">
     <div class="rocket-container" ng-controller="BarCtrl">
-      <div class="rocket">
+      <div class="rocket" ng-repeat="team in teams" ng-style="{ top: team.top + '%'}">
         <div class="rocket-body">
-          <div class="body">CFW</div>
+          <div class="body">{{ team.label }}</div>
           <div class="fin fin-left"></div>
           <div class="fin fin-right"></div>
           <div class="window"></div>
@@ -22,58 +22,15 @@
           <li></li>
           <li></li>
           <li></li>
-          <li class="score">{{ scores['centerForwards'] }}</li>
+          <li class="score">{{ team.score }}</li>
           <li></li>
           <li></li>
           <li></li>
         </ul>
       </div>
-      <div class="rocket">
-        <div class="rocket-body">
-          <div class="body">CYF</div>
-          <div class="fin fin-left"></div>
-          <div class="fin fin-right"></div>
-          <div class="window"></div>
-        </div>
-        <div class="exhaust-flame"></div>
-        <ul class="exhaust-fumes">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li class="score">{{ scores['cyberForce'] }}</li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-      <div class="rocket">
-        <div class="rocket-body">
-          <div class="body">DSQ</div>
-          <div class="fin fin-left"></div>
-          <div class="fin fin-right"></div>
-          <div class="window"></div>
-        </div>
-        <div class="exhaust-flame"></div>
-        <ul class="exhaust-fumes">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li class="score">{{ scores['dramaSquats'] }}</li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>        
     </div>  
 
     <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="node_modules/chart.js/dist/Chart.js"></script>
-    <script src="node_modules/angular-chart.js/dist/angular-chart.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
