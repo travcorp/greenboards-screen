@@ -1,0 +1,51 @@
+<html ng-app="percDisplay">
+  <head>
+    <title>Data Visualization for GreenBuilds</title>
+    <link rel="stylesheet" type="text/css" href="css/graphing.css" />
+    <link rel="stylesheet" type="text/css" href="css/ngPercentDisplay.css" />
+    <script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="node_modules/angular/angular.min.js" type="text/javascript"></script>
+    <script src="script/ngPercentDisplay.js" type="text/javascript"></script>
+  </head>
+  
+  <body ng-controller="mainController">
+    <div id="container">
+      <div id="left">
+        <div style="width:240px;height:240px">
+          <span style="font-size:30">CentreForwards</span>
+          <percent-display percent="62" side="200" colors="#C2C2FF #3333FF"></percent-display>
+        </div>
+      </div>
+      
+      <div id="right">
+        <div style="width:240px;height:240px">
+          <span style="font-size:30">DramaSquats</span>
+          <percent-display percent="71" side="200" colors="#c8f7cd #0c6d17"></percent-display>
+        </div>
+      </div>
+      
+      <div id="center">
+        <div style="width:240px;height:240px">
+          <span style="font-size:30">CyberForce</span>
+          <percent-display percent="83" side="200" colors="#eac8f7 #c242f4"></percent-display>
+        </div>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+
+          var app = angular.module('percDisplay', ['ngPercentDisplay']);
+
+          app.controller('mainController', function($scope) {
+
+              $scope.value = 76;
+              $scope.valor2 = 29;
+
+              $scope.setVal = function() {
+                  $scope.value = Math.floor((Math.random() * 100) + 1);;
+              }
+          });
+
+    </script>
+  </body>
+</html>
