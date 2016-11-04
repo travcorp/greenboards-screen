@@ -16,35 +16,34 @@
 			url: 'https://hsgfjonc3m.execute-api.eu-west-1.amazonaws.com/prod/boardscores'
 		}).then(function (response) {
 			if (response.data){
-				const minTop = 45;
-				const maxTop = 5;
-				
 				var results = response.data;
-
-				//var cfwTop = 
-				//
+                var maxScore = _.maxBy(response.data, function(team) { return team.score; }).score;
+                var minScore = _.minBy(response.data, function(team) { return team.score; }).score;
+                
 				var tops = {
-					CenterForwards : 0,
-					CyberForce: 0,
-					DramaSquats: 0
+					CenterForwards : getPosition(findTeamByName('CenterForwards').score, maxScore, minScore),
+					CyberForce: getPosition(findTeamByName('CyberForce').score, maxScore, minScore),
+					DramaSquats: getPosition(findTeamByName('DramaSquats').score, maxScore, minScore)
 				}
 
-				// tops[resuls.max(m => m.score).name] = maxTop
-				// 
-
 				$scope.teams = [
-					{ name: 'CenterForwards', label: 'CFW', score: findTeamByName('CenterForwards').score, top: maxTop, color: 'blue' },    
-					{ name: 'CyberForce', label: 'CYF', score: findTeamByName('CyberForce').score, top: 25, color: 'green' },
-					{ name: 'DramaSquats', label: 'DSQ', score: findTeamByName('DramaSquats').score, top: minTop, color: 'red' }
+					{ name: 'CenterForwards', label: 'CFW', score: findTeamByName('CenterForwards').score, top: tops.CenterForwards, color: 'blue' },    
+					{ name: 'CyberForce', label: 'CYF', score: findTeamByName('CyberForce').score, top: tops.CyberForce, color: 'green' },
+					{ name: 'DramaSquats', label: 'DSQ', score: findTeamByName('DramaSquats').score, top: tops.DramaSquats, color: 'red' }
 				];
 			}
 
 			function findTeamByName(name) {
-				return results.find((team) => { return team.team === name});
+				return results.find((team) => { return team.team === name}) || {score: 0, team: name, month: ""};
 			}	
 
-			function getMaxScore() {
-
+			function getPosition(score, maxScore, minScore) {
+                var windowHeight = window.innerHeight;
+                var rockerHeight = 400;
+				var lowBoundary = windowHeight - rockerHeight - 100;
+				var highBoundary = 30;
+                
+                return lowBoundary + (highBoundary - lowBoundary) * score/((maxScore-minScore)||1)
 			}
 			
 		}, function (error) {

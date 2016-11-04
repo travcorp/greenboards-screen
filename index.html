@@ -14,7 +14,7 @@
     <div id='stars3'></div>
     <div id='title'></div>  
     <div class="rocket-container" ng-controller="BarCtrl">
-      <div class="rocket" ng-repeat="team in teams" ng-style="{ top: team.top + '%'}">
+      <div class="rocket" ng-repeat="team in teams" ng-style="{ top: team.top + 'px'}">
         <div class="rocket-body">
           <div class="body">{{ team.label }}</div>
           <div class="fin fin-left {{ team.color }}"></div>
@@ -38,5 +38,6 @@
 
     <script src="node_modules/angular/angular.js"></script>
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.16.6/lodash.min.js"></script>
   </body>
 </html>
