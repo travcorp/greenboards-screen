@@ -1,10 +1,6 @@
 (function () {
   'use strict';
-  var app = angular.module('examples', ['chart.js', 'ui.bootstrap']);
-
-  app.config(function (ChartJsProvider) {    
-  
-  });
+  var app = angular.module('examples', []);
 
   app.controller('BarCtrl', ['$scope','$http','$interval', function ($scope, $http, $interval) {
  
@@ -20,85 +16,39 @@
 			url: 'https://hsgfjonc3m.execute-api.eu-west-1.amazonaws.com/prod/boardscores'
 		}).then(function (response) {
 			if (response.data){
-				
-				var cyberSourceScore;
-				var centerForwardsScore;
-				var dramaSqatsScore;
-				
-				for (var i = 0; i < response.data.length; i++){
-					if (response.data[i].team == "CenterForwards"){
-						centerForwardsScore = response.data[i].score
-					}
-					if (response.data[i].team == "CyberForce"){
-						cyberSourceScore = response.data[i].score
-					}
-					if (response.data[i].team == "DramaSquats"){
-						dramaSqatsScore = response.data[i].score
-					}
-				}				
-				$scope.data = [      
-					[centerForwardsScore, cyberSourceScore, dramaSqatsScore]
+				var results = response.data;
+                var maxScore = _.maxBy(response.data, function(team) { return team.score; }).score;
+                var minScore = _.minBy(response.data, function(team) { return team.score; }).score;
+                
+				var tops = {
+					CenterForwards : getPosition(findTeamByName('CenterForwards').score, maxScore, minScore),
+					CyberForce: getPosition(findTeamByName('CyberForce').score, maxScore, minScore),
+					DramaSquats: getPosition(findTeamByName('DramaSquats').score, maxScore, minScore)
+				}
+
+				$scope.teams = [
+					{ name: 'CenterForwards', label: 'CFW', score: findTeamByName('CenterForwards').score, top: tops.CenterForwards, color: 'blue' },    
+					{ name: 'CyberForce', label: 'CYF', score: findTeamByName('CyberForce').score, top: tops.CyberForce, color: 'green' },
+					{ name: 'DramaSquats', label: 'DSQ', score: findTeamByName('DramaSquats').score, top: tops.DramaSquats, color: 'red' }
 				];
+			}
+
+			function findTeamByName(name) {
+				return results.find((team) => { return team.team === name}) || {score: 0, team: name, month: ""};
 			}	
+
+			function getPosition(score, maxScore, minScore) {
+                var windowHeight = window.innerHeight;
+                var rockerHeight = 400;
+				var lowBoundary = windowHeight - rockerHeight - 100;
+				var highBoundary = 30;
+                
+                return lowBoundary + (highBoundary - lowBoundary) * score/((maxScore-minScore)||1)
+			}
 			
 		}, function (error) {
 			console.log('Error:' + error);
 		});
 	}
-	Chart.defaults.global.defaultFontSize = 60;
-		
-	$scope.options = {
-		animation: {
-			duration: 0,
-			onComplete: function () {
-				// render the value of the chart above the bar
-				var ctx = this.chart.ctx;
-				ctx.font = Chart.helpers.fontString(30, 'normal', Chart.defaults.global.defaultFontFamily);
-				ctx.fillStyle = this.chart.config.options.defaultFontColor;
-				ctx.textAlign = 'center';
-				ctx.textBaseline = 'bottom';
-				this.data.datasets.forEach(function (dataset) {
-					for (var i = 0; i < dataset.data.length; i++) {
-						var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model;
-						
-						// If the bar is too high score should be displayed inside the box, otherwise it will be cutted of.
-						var scale_max = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._yScale.maxHeight;
-						var y_pos = model.y - 5;								
-						if ((scale_max - model.y) / scale_max >= 0.93)
-                            y_pos = model.y + 45; 
-						
-						ctx.fillText(dataset.data[i], model.x, y_pos);
-					}
-				});
-			}
-		},		
-		legend: { 
-			display: false 
-		},
-		tooltips: {
-			enabled: false
-		},
-		scales: {
-			scaleLabel:{
-					fontSize: 50
-				},
-			xAxes: [{
-				gridLines:{
-					display: false
-				},
-				
-			}],
-			yAxes: [{			
-				display: false,				
-				ticks:{
-					min: 0,
-					beginAtZero: true
-				}
-			}]
-		}		
-	};
-    $scope.labels = ['CenterForwards', 'CyberForce', 'DramaSquats'];
-    $scope.series = ['Series A'];   
-	$scope.colours = ['#0066ff'];
   }]);
 })();
