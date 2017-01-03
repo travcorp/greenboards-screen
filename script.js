@@ -17,8 +17,9 @@
 		}).then(function (response) {
 			if (response.data){
 				var results = response.data;
-                var maxScore = _.maxBy(response.data, function(team) { return team.score; }).score;
-                var minScore = _.minBy(response.data, function(team) { return team.score; }).score;
+											
+                var maxScore = _.maxBy(results, function(team) { return team.score; }).score;
+                var minScore = _.minBy(results, function(team) { return team.score; }).score;
                 
 				var tops = {
 					CenterForwards : getPosition(findTeamByName('CenterForwards').score, maxScore, minScore),
@@ -42,8 +43,8 @@
                 var rockerHeight = 400;
 				var lowBoundary = windowHeight - rockerHeight - 100;
 				var highBoundary = 30;
-                
-                return lowBoundary + (highBoundary - lowBoundary) * score/((maxScore-minScore)||1)
+                				
+                return lowBoundary + (highBoundary - lowBoundary) * ((score-minScore)/((maxScore-minScore)||1));
 			}
 			
 		}, function (error) {
